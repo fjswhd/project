@@ -72,7 +72,6 @@
 </style>
 </head>
 <body>
-	<jsp:include page="/background.jsp" />
 	<form name="frm" action="/board_with_user/user/join" method="post">
 		<div id="main">
 		<div class="title">회원 가입</div>

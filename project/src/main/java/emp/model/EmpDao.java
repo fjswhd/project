@@ -8,15 +8,6 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 public class EmpDao {
-	private EmpDao instance;
-	private EmpDao() {}
-	public EmpDao getInstance() {
-		if (instance == null) {
-			instance = new EmpDao();
-		}
-		return instance;
-	}
-	
 	private static SqlSession session;
 	static {
 		try {
@@ -26,5 +17,17 @@ public class EmpDao {
 		} catch (Exception e) {
 			System.out.println("연결에러 : " + e.getMessage());
 		}
+	}
+	private static EmpDao instance;
+	private EmpDao() {}
+	public static EmpDao getInstance() {
+		if (instance == null) {
+			instance = new EmpDao();
+		}
+		return instance;
+	}
+	
+	public Emp select(String empno) {
+		return (Emp)session.selectOne("empNS.select", empno);
 	}
 }
